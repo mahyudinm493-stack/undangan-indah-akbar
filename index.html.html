@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Wedding of Indah &amp; Akbar — 18 Januari 2027</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tipografi Editorial Mewah -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            velvet: {
+              950: '#24060c',
+              900: '#3b0b15',
+              800: '#55101e',
+              700: '#701528',
+              600: '#8b1b32',
+            },
+            champagne: {
+              50: '#fefdf9',
+              100: '#fbf6ee',
+              200: '#f3eadb',
+              300: '#e5c175',
+              400: '#c79b48',
+              500: '#a3782e',
+              600: '#7b581d',
+            },
+            ivory: {
+              50: '#fcf8f2',
+              100: '#f5ede0',
+              200: '#e8dcc8',
+            }
+          },
+          fontFamily: {
+            display: ['"Cinzel"', 'Georgia', 'serif'],
+            editorial: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            luxury: '0 28px 68px -18px rgba(36, 6, 12, 0.34)',
+            champagne: '0 14px 36px -6px rgba(199, 155, 72, 0.36)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #fcf8f2;
+      color: #24060c;
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(199, 155, 72, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(59, 11, 21, 0.08) 0%, transparent 50%);
+    }
+
+    .bg-grand-velvet {
+      background:
+        radial-gradient(circle at 50% 18%, rgba(229, 193, 117, 0.16) 0%, transparent 56%),
+        linear-gradient(155deg, #24060c 0%, #3b0b15 52%, #24060c 100%);
+    }
+
+    /* Bingkai berlapis bernuansa emas sampanye dan gading */
+    .editorial-frame {
+      position: relative;
+      border: 1px solid rgba(199, 155, 72, 0.68);
+      box-shadow:
+        inset 0 0 0 5px rgba(252, 248, 242, 0.9),
+        inset 0 0 0 6px rgba(229, 193, 117, 0.45);
+    }
+
+    /* Animasi transisi tirai pembuka undangan */
+    #invitation-cover {
+      transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.85s ease;
+    }
+    #invitation-cover.is-opened {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Animasi kemunculan bagian saat gulir */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-slow {
+      animation: slowSpin 12s linear infinite;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f5ede0;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #55101e;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c79b48;
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased selection:bg-champagne-300 selection:text-velvet-950 overflow-x-hidden">
+
+  <!-- Notifikasi Toast -->
+  <div
+    id="toast-notification"
+    role="status"
+    aria-live="polite"
+    class="fixed top-5 left-1/2 -translate-x-1/2 z-[120] pointer-events-none opacity-0 -translate-y-4 transition-all duration-300 w-[90%] max-w-md"
+  >
+    <div class="bg-velvet-950 text-champagne-100 border border-champagne-400/75 px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+      <span class="w-2.5 h-2.5 rounded-full bg-champagne-300 shrink-0"></span>
+      <span id="toast-message">Informasi disalin.</span>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- SAMPUL PEMBUKA EDITORIAL                                              -->
+  <!-- ===================================================================== -->
+  <section
+    id="invitation-cover"
+    class="fixed inset-0 z-50 bg-grand-velvet text-ivory-50 flex flex-col items-center justify-center px-5 py-8 overflow-y-auto"
+  >
+    <div class="fixed inset-3 sm:inset-5 border border-champagne-400/30 rounded-3xl pointer-events-none"></div>
+
+    <div class="max-w-2xl w-full text-center relative z-10 my-auto py-4">
+      <p class="text-[11px] sm:text-xs uppercase tracking-[0.42em] text-champagne-300 font-medium mb-4">
+        Undangan Pernikahan
+      </p>
+
+      <!-- Monogram I & A -->
+      <div class="mx-auto w-20 h-20 sm:w-24 sm:h-24 mb-5 rounded-full border border-champagne-400/65 bg-velvet-950/80 flex items-center justify-center shadow-champagne">
+        <span class="font-editorial italic text-2xl sm:text-3xl text-champagne-200 tracking-wider">I &amp; A</span>
+      </div>
+
+      <h1 class="font-display text-3xl sm:text-5xl md:text-6xl font-semibold text-champagne-100 tracking-wide leading-tight">
+        Andi Indah Salsabillah Putri
+      </h1>
+      <p class="font-editorial italic text-2xl sm:text-4xl text-champagne-400 my-1.5">&amp;</p>
+      <h2 class="font-display text-2xl sm:text-4xl md:text-5xl font-semibold text-champagne-100 tracking-wide leading-tight mb-5">
+        Baso&apos; Muhammad Nuruddin Akbar.S.pi
+      </h2>
+
+      <div class="inline-flex items-center gap-3 text-xs sm:text-sm uppercase tracking-[0.28em] text-champagne-200/90 mb-8">
+        <span class="w-8 h-px bg-champagne-400/60"></span>
+        <span>Senin, 18 Januari 2027</span>
+        <span class="w-8 h-px bg-champagne-400/60"></span>
+      </div>
+
+      <div>
+        <button
+          type="button"
+          id="open-invitation-btn"
+          class="inline-flex items-center gap-3 px-9 py-4 rounded-full bg-gradient-to-r from-champagne-500 via-champagne-300 to-champagne-500 text-velvet-950 font-semibold text-xs sm:text-sm uppercase tracking-[0.22em] shadow-champagne hover:scale-[1.03] active:scale-[0.98] transition duration-300 cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span>Buka Undangan</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontrol Musik Lembut Web Audio API -->
+  <button
+    type="button"
+    id="music-control-btn"
+    aria-label="Aktifkan atau bisukan musik lembut"
+    title="Musik Lembut"
+    class="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 bg-velvet-950/95 hover:bg-velvet-800 text-champagne-300 border border-champagne-400/70 px-4 py-2.5 rounded-full shadow-2xl transition cursor-pointer backdrop-blur-md"
+  >
+    <span id="music-disc-icon" class="w-6 h-6 rounded-full border border-champagne-400/80 bg-champagne-400/15 flex items-center justify-center">
+      <svg id="music-speaker-svg" class="w-3.5 h-3.5 text-champagne-300" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />
+      </svg>
+    </span>
+    <span id="music-status-label" class="text-xs font-medium tracking-wide hidden sm:inline">Musik: Muted</span>
+  </button>
+
+  <!-- Navigasi Cepat Bawah -->
+  <nav
+    aria-label="Navigasi Undangan"
+    class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 bg-velvet-950/92 backdrop-blur-md border border-champagne-400/50 rounded-full px-3 py-1.5 shadow-2xl flex items-center gap-1 sm:gap-2 max-w-[90vw] overflow-x-auto"
+  >
+    <a href="#mempelai" class="px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-ivory-100 hover:bg-champagne-400/20 hover:text-champagne-300 transition whitespace-nowrap">Mempelai</a>
+    <a href="#acara" class="px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-ivory-100 hover:bg-champagne-400/20 hover:text-champagne-300 transition whitespace-nowrap">Acara</a>
+    <a href="#galeri" class="px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-ivory-100 hover:bg-champagne-400/20 hover:text-champagne-300 transition whitespace-nowrap">Galeri</a>
+    <a href="#keluarga" class="px-2.5 py-1.5 rounded-full text-[11px] sm:text-xs font-medium text-champagne-300 hover:bg-champagne-400/20 transition whitespace-nowrap">Keluarga</a>
+  </nav>
+
+  <!-- ===================================================================== -->
+  <!-- KONTEN UTAMA UNDANGAN                                                  -->
+  <!-- ===================================================================== -->
+  <main class="pb-24">
+
+    <!-- HERO PEMBUKA & HITUNG MUNDUR -->
+    <header class="relative bg-grand-velvet text-ivory-50 pt-14 pb-20 sm:pt-20 sm:pb-28 px-5 overflow-hidden border-b-2 border-champagne-400/60">
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+        <p class="font-editorial italic text-xl sm:text-3xl text-champagne-300 mb-2">
+          Assalamu&apos;alaikum Warahmatullahi Wabarakatuh
+        </p>
+        <p class="text-[11px] sm:text-xs uppercase tracking-[0.35em] text-ivory-100/75 mb-7">
+          Dengan Memohon Rahmat dan Ridho Allah Subhanahu Wa Ta&apos;ala
+        </p>
+
+        <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-bold text-champagne-100 tracking-wide leading-tight">
+          Indah <span class="font-editorial italic font-normal text-champagne-400 mx-1 sm:mx-3">&amp;</span> Akbar
+        </h1>
+        <p class="mt-4 text-sm sm:text-base text-ivory-100/85 max-w-2xl mx-auto leading-relaxed">
+          Dengan penuh syukur dan kebahagiaan, kami mengundang Bapak/Ibu/Saudara/i untuk hadir serta memberikan doa restu pada hari pernikahan kami.
+        </p>
+
+        <!-- HITUNG MUNDUR MENUJU SENIN, 18 JANUARI 2027 PUKUL 09.00 WIB -->
+        <div class="mt-11 max-w-3xl mx-auto">
+          <p class="text-xs uppercase tracking-[0.28em] text-champagne-300 mb-4 font-semibold">
+            Menuju Akad Nikah &bull; Senin, 18 Januari 2027 (09.00 WIB)
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5">
+            <div class="bg-velvet-950/75 border border-champagne-400/50 rounded-2xl p-4 sm:p-5">
+              <div id="cd-days" class="font-display text-3xl sm:text-5xl font-bold text-champagne-300">00</div>
+              <div class="text-xs uppercase tracking-[0.22em] text-ivory-100/75 mt-1">Hari</div>
+            </div>
+            <div class="bg-velvet-950/75 border border-champagne-400/50 rounded-2xl p-4 sm:p-5">
+              <div id="cd-hours" class="font-display text-3xl sm:text-5xl font-bold text-champagne-300">00</div>
+              <div class="text-xs uppercase tracking-[0.22em] text-ivory-100/75 mt-1">Jam</div>
+            </div>
+            <div class="bg-velvet-950/75 border border-champagne-400/50 rounded-2xl p-4 sm:p-5">
+              <div id="cd-minutes" class="font-display text-3xl sm:text-5xl font-bold text-champagne-300">00</div>
+              <div class="text-xs uppercase tracking-[0.22em] text-ivory-100/75 mt-1">Menit</div>
+            </div>
+            <div class="bg-velvet-950/75 border border-champagne-400/50 rounded-2xl p-4 sm:p-5">
+              <div id="cd-seconds" class="font-display text-3xl sm:text-5xl font-bold text-champagne-300">00</div>
+              <div class="text-xs uppercase tracking-[0.22em] text-ivory-100/75 mt-1">Detik</div>
+            </div>
+          </div>
+          <p id="cd-note" class="text-xs text-champagne-200/80 mt-3 italic">
+            Hitung mundur menuju Senin, 18 Januari 2027 pukul 09.00 WIB.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- KUTIPAN DOA -->
+    <section class="max-w-4xl mx-auto px-5 pt-14 pb-6 reveal-section">
+      <div class="bg-ivory-100 border border-champagne-400/45 rounded-3xl p-6 sm:p-10 text-center">
+        <p class="font-editorial italic text-xl sm:text-2xl text-velvet-900 leading-relaxed">
+          &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.&rdquo;
+        </p>
+        <p class="mt-3 text-xs sm:text-sm font-semibold uppercase tracking-[0.24em] text-champagne-600">
+          QS. Ar-Rum : 21
+        </p>
+      </div>
+    </section>
+
+    <!-- PROFIL MEMPELAI -->
+    <section id="mempelai" class="max-w-6xl mx-auto px-5 py-14 reveal-section">
+      <div class="text-center mb-12">
+        <p class="text-xs uppercase tracking-[0.32em] text-champagne-600 font-semibold mb-2">Mempelai</p>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-velvet-900">Calon Pengantin</h2>
+        <div class="w-24 h-px bg-gradient-to-r from-transparent via-champagne-400 to-transparent mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+        <!-- Mempelai Wanita -->
+        <article class="bg-ivory-50 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 shadow-luxury flex flex-col items-center text-center">
+          <div class="w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden editorial-frame bg-velvet-950 mb-6 group">
+            <img
+              data-slot="portrait-6"
+              src=""
+              alt="Andi Indah Salsabillah Putri"
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105 cursor-pointer"
+            />
+          </div>
+          <span class="text-xs uppercase tracking-[0.25em] text-champagne-600 font-semibold">Mempelai Wanita</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-velvet-950 mt-1">
+            Andi Indah Salsabillah Putri
+          </h3>
+          <p class="text-sm sm:text-base text-velvet-900/85 mt-2.5 leading-relaxed">
+            Putri pertama dari <span class="font-semibold text-velvet-950">bapak H. Ambo Lolo</span>
+            <br />
+            Dan <span class="font-semibold text-velvet-950">Ibu Hj. Andi Elis</span>
+          </p>
+        </article>
+
+        <!-- Mempelai Pria -->
+        <article class="bg-ivory-50 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 shadow-luxury flex flex-col items-center text-center">
+          <div class="w-48 sm:w-56 aspect-[3/4] rounded-2xl overflow-hidden editorial-frame bg-velvet-950 mb-6 group">
+            <img
+              data-slot="portrait-7"
+              src=""
+              alt="Baso' Muhammad Nuruddin Akbar.S.pi"
+              class="w-full h-full object-cover transition duration-500 group-hover:scale-105 cursor-pointer"
+            />
+          </div>
+          <span class="text-xs uppercase tracking-[0.25em] text-champagne-600 font-semibold">Mempelai Pria</span>
+          <h3 class="font-display text-2xl sm:text-3xl font-bold text-velvet-950 mt-1">
+            Baso&apos; Muhammad Nuruddin Akbar.S.pi
+          </h3>
+          <p class="text-sm sm:text-base text-velvet-900/85 mt-2.5 leading-relaxed">
+            Putra pertama dari <span class="font-semibold text-velvet-950">bapak H. Basok Mappasessuk</span>
+            <br />
+            Dan <span class="font-semibold text-velvet-950">Ibu Hj. Besse&apos; Rosdiana</span>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DETAIL WAKTU & TEMPAT ACARA -->
+    <section id="acara" class="bg-grand-velvet text-ivory-50 py-16 sm:py-24 px-5 my-6 border-y-2 border-champagne-400/55 reveal-section">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <p class="text-xs uppercase tracking-[0.32em] text-champagne-300 font-semibold mb-2">Waktu &amp; Lokasi</p>
+          <h2 class="font-display text-3xl sm:text-5xl font-bold text-champagne-100">Rangkaian Acara</h2>
+          <p class="text-sm sm:text-base text-ivory-100/80 mt-2 max-w-xl mx-auto">
+            Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Akad Nikah -->
+          <div class="bg-velvet-950/80 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
+            <div>
+              <div class="inline-block px-3.5 py-1 rounded-full bg-champagne-400/15 border border-champagne-400/40 text-champagne-300 text-xs uppercase tracking-widest font-semibold mb-4">
+                Akad Nikah
+              </div>
+              <h3 class="font-display text-2xl sm:text-3xl font-bold text-champagne-100 mb-4">Akad Nikah</h3>
+
+              <ul class="space-y-3 text-sm sm:text-base text-ivory-100/90">
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Hari/Tanggal</span>
+                  <span>: Senin, 18 Januari 2027</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Waktu</span>
+                  <span>: Pukul : 09.00 Wib - Selesai</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Tempat</span>
+                  <span>: Bertempat : Dikelurahan Tanjung Solok Dikediaman Mempelai Wanita</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-champagne-400/20 flex flex-wrap gap-2.5">
+              <button
+                type="button"
+                data-copy="Bertempat : Dikelurahan Tanjung Solok Dikediaman Mempelai Wanita — https://maps.app.goo.gl/ZWUvwSGZWkxKrMv96"
+                class="copy-action flex-1 min-w-[140px] px-4 py-2.5 rounded-xl bg-velvet-800 hover:bg-velvet-700 border border-champagne-400/50 text-champagne-300 text-xs sm:text-sm font-medium transition cursor-pointer"
+              >
+                Salin Alamat &amp; Link
+              </button>
+              <a
+                href="https://maps.app.goo.gl/ZWUvwSGZWkxKrMv96"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 min-w-[140px] text-center px-4 py-2.5 rounded-xl bg-champagne-300 hover:bg-champagne-400 text-velvet-950 text-xs sm:text-sm font-semibold transition"
+              >
+                Buka Google Maps
+              </a>
+            </div>
+          </div>
+
+          <!-- Resepsi -->
+          <div class="bg-velvet-950/80 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl">
+            <div>
+              <div class="inline-block px-3.5 py-1 rounded-full bg-champagne-400/15 border border-champagne-400/40 text-champagne-300 text-xs uppercase tracking-widest font-semibold mb-4">
+                Resepsi
+              </div>
+              <h3 class="font-display text-2xl sm:text-3xl font-bold text-champagne-100 mb-4">Resepsi</h3>
+
+              <ul class="space-y-3 text-sm sm:text-base text-ivory-100/90">
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Hari/Tanggal</span>
+                  <span>: Senin, 18 Januari 2027</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Waktu</span>
+                  <span>: Pukul : 10.00 Wib - Selesai</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="text-champagne-300 font-semibold shrink-0 w-24">Tempat</span>
+                  <span>: Bertempat : Jl. Batang hari Rt.01 Rw.01 Kelurahan Tanjung Solok Kec. Kuala Jambi Kab. Tanjung Jabung Timur</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="mt-7 pt-5 border-t border-champagne-400/20 flex flex-wrap gap-2.5">
+              <button
+                type="button"
+                data-copy="Bertempat : Jl. Batang hari Rt.01 Rw.01 Kelurahan Tanjung Solok Kec. Kuala Jambi Kab. Tanjung Jabung Timur — https://maps.app.goo.gl/ZWUvwSGZWkxKrMv96"
+                class="copy-action flex-1 min-w-[140px] px-4 py-2.5 rounded-xl bg-velvet-800 hover:bg-velvet-700 border border-champagne-400/50 text-champagne-300 text-xs sm:text-sm font-medium transition cursor-pointer"
+              >
+                Salin Alamat &amp; Link
+              </button>
+              <a
+                href="https://maps.app.goo.gl/ZWUvwSGZWkxKrMv96"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex-1 min-w-[140px] text-center px-4 py-2.5 rounded-xl bg-champagne-300 hover:bg-champagne-400 text-velvet-950 text-xs sm:text-sm font-semibold transition"
+              >
+                Buka Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI 7 POTRET EDITORIAL -->
+    <section id="galeri" class="max-w-6xl mx-auto px-5 py-16 reveal-section">
+      <div class="text-center mb-8">
+        <p class="text-xs uppercase tracking-[0.32em] text-champagne-600 font-semibold mb-2">Galeri Foto</p>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-velvet-950">7 Potret Memori</h2>
+        <p class="text-sm sm:text-base text-velvet-900/80 mt-2 max-w-2xl mx-auto">
+          Klik potret untuk melihat ukuran besar atau gunakan tombol &ldquo;Ganti Foto&rdquo; pada bingkai mana pun untuk memuat foto langsung dari perangkat Anda.
+        </p>
+      </div>
+
+      <!-- Toolbar Galeri -->
+      <div class="bg-ivory-100 border border-champagne-400/55 rounded-2xl p-4 sm:p-5 mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-center sm:text-left">
+          <p class="text-sm font-semibold text-velvet-950">Bingkai Foto Studio Hangat (7 Slot)</p>
+          <p class="text-xs text-velvet-900/75">
+            Dukung unggah file gambar langsung dari perangkat per bingkai maupun sekaligus.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+          <label class="px-4 py-2.5 rounded-xl bg-velvet-800 hover:bg-velvet-700 text-champagne-300 border border-champagne-400/60 text-xs font-semibold uppercase tracking-wider cursor-pointer transition">
+            <span>Muat Banyak Foto</span>
+            <input id="batch-gallery-input" type="file" accept="image/*" multiple class="hidden" />
+          </label>
+          <button
+            type="button"
+            id="reset-gallery-btn"
+            class="px-4 py-2.5 rounded-xl bg-ivory-50 hover:bg-ivory-200 text-velvet-950 border border-champagne-400/60 text-xs font-semibold uppercase tracking-wider transition cursor-pointer"
+          >
+            Kembalikan Bingkai
+          </button>
+        </div>
+      </div>
+
+      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Diisi oleh JavaScript -->
+      </div>
+    </section>
+
+    <!-- KELUARGA BESAR & TURUT MENGUNDANG -->
+    <section id="keluarga" class="max-w-6xl mx-auto px-5 py-16 reveal-section">
+      <div class="text-center mb-12">
+        <p class="text-xs uppercase tracking-[0.32em] text-champagne-600 font-semibold mb-2">Keluarga</p>
+        <h2 class="font-display text-3xl sm:text-5xl font-bold text-velvet-950">Keluarga Besar &amp; Turut Mengundang</h2>
+        <div class="w-24 h-px bg-gradient-to-r from-transparent via-champagne-400 to-transparent mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+        <!-- Keluarga Besar Wanita -->
+        <div class="bg-ivory-50 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <h3 class="font-display text-2xl font-bold text-velvet-950 border-b border-champagne-400/35 pb-3 mb-5">
+            Keluarga Besar wanita
+          </h3>
+          <ul class="space-y-3.5 text-sm sm:text-base text-velvet-950">
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">H. Ambok Lolo / Hj. Andi Elis</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Ayah / Ibu )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">H. Musdalifah ( Alm ) / Siti Haisyah</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Kakek / Nenek )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">Andi Bambang ( Alm ) / Nurlela</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Kakek / Nenek )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <span class="font-semibold">Andi Kasau ( Alm ) / Andi Wawo ( Almh )</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Buyut )</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Keluarga Besar Pria -->
+        <div class="bg-ivory-50 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <h3 class="font-display text-2xl font-bold text-velvet-950 border-b border-champagne-400/35 pb-3 mb-5">
+            Keluarga Besar Pria
+          </h3>
+          <ul class="space-y-3.5 text-sm sm:text-base text-velvet-950">
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">H. Baso&lsquo; Mappasessuk / Hj. Besse&apos; Rosdiana</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Ayah / Ibu )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">H. Ambo Nyompah / Hj. Besse Landa</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Kakek / Nenek )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 pb-2.5 border-b border-ivory-200">
+              <span class="font-semibold">H. Lohang ( Daeng Sangiang ) ( Alm )</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Kakek )</span>
+            </li>
+            <li class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+              <span class="font-semibold">Hj. Besse Cennang</span>
+              <span class="text-xs uppercase tracking-wider font-medium text-champagne-600 bg-champagne-200/80 px-2.5 py-0.5 rounded-full w-fit">( Nenek )</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Turut Mengundang -->
+      <div class="bg-ivory-100 border border-champagne-400/55 rounded-3xl p-6 sm:p-8 shadow-sm">
+        <h3 class="font-display text-2xl font-bold text-velvet-950 border-b border-champagne-400/35 pb-3 mb-5 text-center">
+          Turut Mengundang
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm sm:text-base text-velvet-950">
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Rudi / Hj. Indo Anjak</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Acok / Hj. Hasnah</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">Hasanuddin / Endah Lidia Sari</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">Musrianto Efendi ( Mullak )</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">Budiman / Andi Batari Kuniang</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Lomek ( Mejelis Hidayah )</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Kakek )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Hermansyah</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Yunus</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H. Rahman</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Ketua Rt.01 Tj. Solok )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">H.baso&lsquo; Mappanyongki / Hj. Marwah</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Kakek / Nenek )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">Mahyudin / Erna Wati</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+          <div class="flex items-center justify-between gap-2 py-1.5 border-b border-champagne-400/20">
+            <span class="font-medium">Darwis / Novianti</span>
+            <span class="text-xs text-velvet-900/80 font-medium shrink-0">( Paman / Bibi&lsquo; )</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP UCAPAN TERIMA KASIH -->
+    <footer class="bg-grand-velvet text-ivory-50 py-16 px-5 mt-8 border-t-2 border-champagne-400/60 text-center">
+      <div class="max-w-3xl mx-auto">
+        <p class="font-editorial italic text-xl sm:text-2xl text-champagne-300 mb-2">
+          Wassalamu&apos;alaikum Warahmatullahi Wabarakatuh
+        </p>
+        <p class="text-xs sm:text-sm text-ivory-100/85 mb-6 leading-relaxed">
+          Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. Atas perhatian dan kehadirannya kami ucapkan terima kasih.
+        </p>
+        <div class="font-display text-2xl sm:text-3xl font-bold text-champagne-100 mb-2">
+          Indah &amp; Akbar
+        </div>
+        <p class="text-xs sm:text-sm text-champagne-200/90 font-medium">
+          Keluarga Besar Wanita &amp; Keluarga Besar Pria
+        </p>
+        <p class="text-xs text-champagne-300/75 mt-3 tracking-widest uppercase">
+          Senin, 18 Januari 2027 &bull; Tanjung Solok, Kuala Jambi
+        </p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- MODAL LIGHTBOX PRATINJAU FOTO -->
+  <div
+    id="lightbox-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Pratinjau Foto Ukuran Besar"
+    class="fixed inset-0 z-[110] bg-velvet-950/90 backdrop-blur-md hidden items-center justify-center p-4"
+  >
+    <div class="max-w-2xl w-full bg-velvet-900 border border-champagne-400/65 rounded-3xl p-4 sm:p-6 shadow-2xl relative">
+      <button
+        type="button"
+        id="lightbox-close"
+        aria-label="Tutup Pratinjau"
+        class="w-10 h-10 rounded-full bg-velvet-950 hover:bg-champagne-400 text-champagne-200 hover:text-velvet-950 border border-champagne-400/50 flex items-center justify-center absolute top-4 right-4 transition cursor-pointer font-bold"
+      >
+        &times;
+      </button>
+      <div class="max-h-[72vh] overflow-hidden rounded-2xl bg-velvet-950 flex items-center justify-center">
+        <img id="lightbox-img" src="" alt="" class="max-h-[70vh] w-auto object-contain rounded-xl" />
+      </div>
+      <div class="mt-4 text-center">
+        <p id="lightbox-title" class="font-display text-lg sm:text-xl font-bold text-champagne-100"></p>
+        <p id="lightbox-caption" class="text-xs sm:text-sm text-ivory-100/80 mt-0.5"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // -------------------------------------------------------------------
+      // 1. NOTIFIKASI TOAST & SALIN KE PAPAN KLIP
+      // -------------------------------------------------------------------
+      const toastBox = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-message');
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toastBox || !toastMsg) return;
+        toastMsg.textContent = message;
+        toastBox.classList.remove('opacity-0', '-translate-y-4');
+        toastBox.classList.add('opacity-100', 'translate-y-0');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toastBox.classList.remove('opacity-100', 'translate-y-0');
+          toastBox.classList.add('opacity-0', '-translate-y-4');
+        }, 2800);
+      }
+
+      async function copyToClipboard(text) {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            showToast('Berhasil disalin ke papan klip.');
+            return;
+          }
+        } catch (_) {}
+        try {
+          const area = document.createElement('textarea');
+          area.value = text;
+          area.setAttribute('readonly', '');
+          area.style.position = 'fixed';
+          area.style.left = '-9999px';
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand('copy');
+          document.body.removeChild(area);
+          showToast('Berhasil disalin ke papan klip.');
+        } catch (_) {
+          showToast('Tidak dapat menyalin otomatis.');
+        }
+      }
+
+      document.querySelectorAll('.copy-action').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          copyToClipboard(btn.getAttribute('data-copy') || '');
+        });
+      });
+
+      // -------------------------------------------------------------------
+      // 2. MUSIK LEMBUT SINTETIS WEB AUDIO API (MUTE / UNMUTE)
+      // -------------------------------------------------------------------
+      const musicBtn = document.getElementById('music-control-btn');
+      const musicStatusLabel = document.getElementById('music-status-label');
+      const musicDiscIcon = document.getElementById('music-disc-icon');
+      const musicSpeakerSvg = document.getElementById('music-speaker-svg');
+
+      let audioCtx = null;
+      let noteInterval = null;
+      let isAudioPlaying = false;
+      let noteCursor = 0;
+
+      // Rangkaian nada lembut bernuansa hangat
+      const gentleProgression = [
+        261.63, 329.63, 392.00, 493.88,
+        523.25, 493.88, 392.00, 329.63,
+        293.66, 349.23, 440.00, 523.25
+      ];
+
+      function triggerGentleNote(freq) {
+        if (!audioCtx || audioCtx.state !== 'running') return;
+        const now = audioCtx.currentTime;
+
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        const gain2 = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, now);
+
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(freq * 0.5, now);
+
+        gain1.gain.setValueAtTime(0.0001, now);
+        gain1.gain.exponentialRampToValueAtTime(0.038, now + 0.06);
+        gain1.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
+
+        gain2.gain.setValueAtTime(0.0001, now);
+        gain2.gain.exponentialRampToValueAtTime(0.014, now + 0.12);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
+
+        osc1.connect(gain1);
+        osc2.connect(gain2);
+        gain1.connect(audioCtx.destination);
+        gain2.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + 2.6);
+        osc2.stop(now + 2.6);
+      }
+
+      function updateMusicUI() {
+        if (musicStatusLabel) {
+          musicStatusLabel.textContent = isAudioPlaying ? 'Musik: Aktif' : 'Musik: Muted';
+        }
+        if (musicDiscIcon) {
+          if (isAudioPlaying) musicDiscIcon.classList.add('spin-slow');
+          else musicDiscIcon.classList.remove('spin-slow');
+        }
+        if (musicSpeakerSvg) {
+          if (isAudioPlaying) {
+            musicSpeakerSvg.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z" />';
+          } else {
+            musicSpeakerSvg.innerHTML = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z" />';
+          }
+        }
+      }
+
+      async function unmuteGentleMusic() {
+        try {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContextClass) return;
+          if (!audioCtx) audioCtx = new AudioContextClass();
+          if (audioCtx.state === 'suspended') {
+            await audioCtx.resume();
+          }
+          if (noteInterval) clearInterval(noteInterval);
+
+          triggerGentleNote(gentleProgression[noteCursor % gentleProgression.length]);
+          noteCursor += 1;
+
+          noteInterval = setInterval(() => {
+            triggerGentleNote(gentleProgression[noteCursor % gentleProgression.length]);
+            noteCursor += 1;
+          }, 1250);
+
+          isAudioPlaying = true;
+          updateMusicUI();
+        } catch (_) {
+          showToast('Audio tidak dapat diaktifkan di peramban ini.');
+        }
+      }
+
+      function muteGentleMusic() {
+        if (noteInterval) {
+          clearInterval(noteInterval);
+          noteInterval = null;
+        }
+        isAudioPlaying = false;
+        updateMusicUI();
+      }
+
+      if (musicBtn) {
+        musicBtn.addEventListener('click', () => {
+          if (isAudioPlaying) {
+            muteGentleMusic();
+            showToast('Musik lembut dimatikan.');
+          } else {
+            unmuteGentleMusic();
+            showToast('Musik lembut diaktifkan.');
+          }
+        });
+      }
+
+      const coverSection = document.getElementById('invitation-cover');
+      const openBtn = document.getElementById('open-invitation-btn');
+      if (openBtn && coverSection) {
+        openBtn.addEventListener('click', () => {
+          coverSection.classList.add('is-opened');
+          unmuteGentleMusic();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      updateMusicUI();
+
+      // -------------------------------------------------------------------
+      // 3. HITUNG MUNDUR MENUJU SENIN, 18 JANUARI 2027 PUKUL 09.00 WIB
+      // -------------------------------------------------------------------
+      const targetTime = new Date('2027-01-18T09:00:00+07:00').getTime();
+      const elDays = document.getElementById('cd-days');
+      const elHours = document.getElementById('cd-hours');
+      const elMinutes = document.getElementById('cd-minutes');
+      const elSeconds = document.getElementById('cd-seconds');
+      const elNote = document.getElementById('cd-note');
+
+      function pad2(val) {
+        return String(val).padStart(2, '0');
+      }
+
+      function refreshCountdown() {
+        const diff = targetTime - Date.now();
+        if (diff <= 0) {
+          if (elDays) elDays.textContent = '00';
+          if (elHours) elHours.textContent = '00';
+          if (elMinutes) elMinutes.textContent = '00';
+          if (elSeconds) elSeconds.textContent = '00';
+          if (elNote) elNote.textContent = 'Hari bahagia telah tiba pada Senin, 18 Januari 2027.';
+          return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        if (elDays) elDays.textContent = pad2(days);
+        if (elHours) elHours.textContent = pad2(hours);
+        if (elMinutes) elMinutes.textContent = pad2(minutes);
+        if (elSeconds) elSeconds.textContent = pad2(seconds);
+      }
+
+      refreshCountdown();
+      setInterval(refreshCountdown, 1000);
+
+      // -------------------------------------------------------------------
+      // 4. GALERI 7 POTRET STUDIO HANGAT + GANTI FOTO + LIGHTBOX
+      // -------------------------------------------------------------------
+      function createWarmStudioArtwork(options) {
+        const { title, badge, scene } = options;
+        const svg = `
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="600" height="800">
+            <defs>
+              <linearGradient id="warmBackdrop" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3A1419" />
+                <stop offset="50%" stop-color="#6B2A26" />
+                <stop offset="100%" stop-color="#280D11" />
+              </linearGradient>
+              <radialGradient id="studioLamp" cx="50%" cy="32%" r="52%">
+                <stop offset="0%" stop-color="#F7DFAA" stop-opacity="0.34" />
+                <stop offset="100%" stop-color="#280D11" stop-opacity="0" />
+              </radialGradient>
+              <linearGradient id="goldTrim" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F7E6BC" />
+                <stop offset="50%" stop-color="#D4A94E" />
+                <stop offset="100%" stop-color="#8C651B" />
+              </linearGradient>
+            </defs>
+
+            <rect width="600" height="800" fill="url(#warmBackdrop)" />
+            <rect width="600" height="800" fill="url(#studioLamp)" />
+            <rect x="24" y="24" width="552" height="752" rx="28" fill="none" stroke="url(#goldTrim)" stroke-width="2" opacity="0.72" />
+            <rect x="34" y="34" width="532" height="732" rx="22" fill="none" stroke="url(#goldTrim)" stroke-width="1" opacity="0.42" />
+
+            ${
+              scene === 'bride'
+                ? `
+                  <path d="M188 188 Q300 82 412 188 L390 210 Q300 124 210 210 Z" fill="url(#goldTrim)" />
+                  <ellipse cx="300" cy="248" rx="60" ry="74" fill="#681121" stroke="url(#goldTrim)" stroke-width="2.5" />
+                  <ellipse cx="300" cy="255" rx="41" ry="49" fill="#F3D3C4" />
+                  <path d="M158 342 Q300 310 442 342 L480 650 L120 650 Z" fill="#82172B" stroke="url(#goldTrim)" stroke-width="2.5" />
+                  <path d="M236 336 Q300 446 364 336" fill="none" stroke="url(#goldTrim)" stroke-width="6" />
+                `
+                : scene === 'groom'
+                ? `
+                  <rect x="238" y="138" width="124" height="54" rx="10" fill="url(#goldTrim)" />
+                  <ellipse cx="300" cy="248" rx="52" ry="64" fill="#E6C0AC" stroke="url(#goldTrim)" stroke-width="2" />
+                  <path d="M185 338 Q300 308 415 338 L434 650 L166 650 Z" fill="#681121" stroke="url(#goldTrim)" stroke-width="2.5" />
+                  <rect x="202" y="492" width="196" height="158" fill="#21090D" stroke="url(#goldTrim)" stroke-width="2" />
+                  <line x1="255" y1="492" x2="255" y2="650" stroke="url(#goldTrim)" stroke-width="4" />
+                  <line x1="345" y1="492" x2="345" y2="650" stroke="url(#goldTrim)" stroke-width="4" />
+                `
+                : `
+                  <g transform="translate(${scene === 'pose-a' ? '-16' : scene === 'pose-b' ? '16' : '0'}, 0)">
+                    <path d="M122 195 Q212 105 302 195 L284 213 Q212 142 140 213 Z" fill="url(#goldTrim)" />
+                    <ellipse cx="212" cy="252" rx="52" ry="64" fill="#681121" stroke="url(#goldTrim)" stroke-width="2.5" />
+                    <ellipse cx="212" cy="258" rx="35" ry="43" fill="#F3D3C4" />
+                    <path d="M104 340 Q212 312 316 340 L334 650 L88 650 Z" fill="#82172B" stroke="url(#goldTrim)" stroke-width="2.5" />
+                    <path d="M158 334 Q212 420 266 334" fill="none" stroke="url(#goldTrim)" stroke-width="5.5" />
+                  </g>
+                  <g transform="translate(${scene === 'pose-a' ? '14' : scene === 'pose-b' ? '-14' : '0'}, ${scene === 'pose-c' ? '26' : '0'})">
+                    <rect x="336" y="150" width="112" height="48" rx="8" fill="url(#goldTrim)" />
+                    <ellipse cx="392" cy="250" rx="47" ry="59" fill="#E6C0AC" stroke="url(#goldTrim)" stroke-width="2" />
+                    <path d="M296 338 Q392 312 488 338 L506 650 L282 650 Z" fill="#681121" stroke="url(#goldTrim)" stroke-width="2.5" />
+                    <rect x="306" y="492" width="178" height="158" fill="#21090D" stroke="url(#goldTrim)" stroke-width="2" />
+                    <line x1="352" y1="492" x2="352" y2="650" stroke="url(#goldTrim)" stroke-width="4" />
+                    <line x1="434" y1="492" x2="434" y2="650" stroke="url(#goldTrim)" stroke-width="4" />
+                  </g>
+                `
+            }
+
+            <rect x="56" y="672" width="488" height="78" rx="18" fill="#21090D" fill-opacity="0.92" stroke="url(#goldTrim)" stroke-width="1.8" />
+            <text x="300" y="707" text-anchor="middle" fill="#F7E6BC" font-family="Playfair Display, Georgia, serif" font-size="23" font-weight="bold">${title}</text>
+            <text x="300" y="734" text-anchor="middle" fill="#D4A94E" font-family="Plus Jakarta Sans, sans-serif" font-size="13" letter-spacing="2.4">${badge}</text>
+          </svg>
+        `.trim();
+        return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+      }
+
+      const gallerySlots = [
+        {
+          id: 'portrait-1',
+          title: 'Potret 01 — Indah & Akbar',
+          badge: 'BINGKAI 01',
+          caption: 'Potret studio bernuansa hangat Andi Indah Salsabillah Putri & Baso\' Muhammad Nuruddin Akbar.S.pi',
+          src: createWarmStudioArtwork({ title: 'Indah & Akbar', badge: 'POTRET 01', scene: 'couple' })
+        },
+        {
+          id: 'portrait-2',
+          title: 'Potret 02 — Indah & Akbar',
+          badge: 'BINGKAI 02',
+          caption: 'Potret elegan dalam balutan warna marun dan emas sampanye',
+          src: createWarmStudioArtwork({ title: 'Indah & Akbar', badge: 'POTRET 02', scene: 'pose-a' })
+        },
+        {
+          id: 'portrait-3',
+          title: 'Potret 03 — Indah & Akbar',
+          badge: 'BINGKAI 03',
+          caption: 'Momen kebersamaan menuju Senin, 18 Januari 2027',
+          src: createWarmStudioArtwork({ title: 'Indah & Akbar', badge: 'POTRET 03', scene: 'pose-b' })
+        },
+        {
+          id: 'portrait-4',
+          title: 'Potret 04 — Indah & Akbar',
+          badge: 'BINGKAI 04',
+          caption: 'Potret hangat penuh keanggunan pasangan pengantin',
+          src: createWarmStudioArtwork({ title: 'Indah & Akbar', badge: 'POTRET 04', scene: 'pose-c' })
+        },
+        {
+          id: 'portrait-5',
+          title: 'Potret 05 — Indah & Akbar',
+          badge: 'BINGKAI 05',
+          caption: 'Untaian doa restu menyongsong hari bahagia',
+          src: createWarmStudioArtwork({ title: 'Indah & Akbar', badge: 'POTRET 05', scene: 'couple' })
+        },
+        {
+          id: 'portrait-6',
+          title: 'Potret 06 — Mempelai Wanita',
+          badge: 'BINGKAI 06',
+          caption: 'Andi Indah Salsabillah Putri — Putri pertama dari bapak H. Ambo Lolo Dan Ibu Hj. Andi Elis',
+          src: createWarmStudioArtwork({ title: 'Andi Indah Salsabillah Putri', badge: 'POTRET 06', scene: 'bride' })
+        },
+        {
+          id: 'portrait-7',
+          title: 'Potret 07 — Mempelai Pria',
+          badge: 'BINGKAI 07',
+          caption: 'Baso\' Muhammad Nuruddin Akbar.S.pi — Putra pertama dari bapak H. Basok Mappasessuk Dan Ibu Hj. Besse\' Rosdiana',
+          src: createWarmStudioArtwork({ title: 'Baso\' Muhammad Nuruddin Akbar.S.pi', badge: 'POTRET 07', scene: 'groom' })
+        }
+      ];
+
+      const customPhotoMap = {};
+      const galleryGrid = document.getElementById('gallery-grid');
+      const lightboxModal = document.getElementById('lightbox-modal');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+
+      function getCurrentPhotoSrc(slot) {
+        return customPhotoMap[slot.id] || slot.src;
+      }
+
+      function syncPhotoSlots() {
+        gallerySlots.forEach((slot) => {
+          const activeUrl = getCurrentPhotoSrc(slot);
+          const gridThumb = document.getElementById('img-' + slot.id);
+          if (gridThumb) gridThumb.src = activeUrl;
+          document.querySelectorAll(`[data-slot="${slot.id}"]`).forEach((target) => {
+            target.src = activeUrl;
+          });
+        });
+      }
+
+      function openLightbox(slot) {
+        if (!lightboxModal || !lightboxImg) return;
+        lightboxImg.src = getCurrentPhotoSrc(slot);
+        lightboxImg.alt = slot.title;
+        if (lightboxTitle) lightboxTitle.textContent = slot.title;
+        if (lightboxCaption) lightboxCaption.textContent = slot.caption;
+        lightboxModal.classList.remove('hidden');
+        lightboxModal.classList.add('flex');
+      }
+
+      function closeLightbox() {
+        if (!lightboxModal) return;
+        lightboxModal.classList.add('hidden');
+        lightboxModal.classList.remove('flex');
+      }
+
+      if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+      if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+          if (e.target === lightboxModal) closeLightbox();
+        });
+      }
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox();
+      });
+
+      function buildGalleryCards() {
+        if (!galleryGrid) return;
+        galleryGrid.innerHTML = '';
+
+        gallerySlots.forEach((slot, index) => {
+          const card = document.createElement('article');
+          const centerLastOnSm = index === gallerySlots.length - 1 ? ' sm:col-span-2 lg:col-span-1' : '';
+          card.className =
+            'bg-ivory-50 border border-champagne-400/55 rounded-3xl p-4 shadow-sm hover:shadow-luxury transition duration-300 flex flex-col justify-between' +
+            centerLastOnSm;
+
+          const frame = document.createElement('div');
+          frame.className = 'aspect-[3/4] w-full rounded-2xl overflow-hidden editorial-frame bg-velvet-950 relative cursor-pointer group';
+          frame.addEventListener('click', () => openLightbox(slot));
+
+          const imgEl = document.createElement('img');
+          imgEl.id = 'img-' + slot.id;
+          imgEl.src = getCurrentPhotoSrc(slot);
+          imgEl.alt = slot.title;
+          imgEl.className = 'w-full h-full object-cover transition duration-500 group-hover:scale-105';
+
+          const badgeEl = document.createElement('span');
+          badgeEl.className = 'absolute top-3 left-3 bg-velvet-950/85 text-champagne-200 border border-champagne-400/50 text-[11px] font-semibold px-3 py-1 rounded-full backdrop-blur-sm';
+          badgeEl.textContent = slot.badge;
+
+          frame.appendChild(imgEl);
+          frame.appendChild(badgeEl);
+
+          const body = document.createElement('div');
+          body.className = 'pt-4 flex flex-col flex-1 justify-between gap-3';
+
+          const info = document.createElement('div');
+          const heading = document.createElement('h3');
+          heading.className = 'font-display text-lg font-bold text-velvet-950';
+          heading.textContent = slot.title;
+
+          const desc = document.createElement('p');
+          desc.className = 'text-xs text-velvet-900/75 mt-1 line-clamp-2';
+          desc.textContent = slot.caption;
+
+          info.appendChild(heading);
+          info.appendChild(desc);
+
+          const actions = document.createElement('div');
+          actions.className = 'flex items-center gap-2 pt-2 border-t border-ivory-200';
+
+          const zoomBtn = document.createElement('button');
+          zoomBtn.type = 'button';
+          zoomBtn.className = 'flex-1 py-2 px-3 rounded-xl bg-ivory-100 hover:bg-ivory-200 text-velvet-950 border border-champagne-400/50 text-xs font-semibold transition cursor-pointer';
+          zoomBtn.textContent = 'Perbesar';
+          zoomBtn.addEventListener('click', () => openLightbox(slot));
+
+          const changeLabel = document.createElement('label');
+          changeLabel.className = 'flex-1 py-2 px-3 rounded-xl bg-velvet-800 hover:bg-velvet-700 text-champagne-200 border border-champagne-400/50 text-xs font-semibold text-center transition cursor-pointer';
+          changeLabel.textContent = 'Ganti Foto';
+
+          const fileInput = document.createElement('input');
+          fileInput.type = 'file';
+          fileInput.accept = 'image/*';
+          fileInput.className = 'hidden';
+          fileInput.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              if (typeof reader.result === 'string') {
+                customPhotoMap[slot.id] = reader.result;
+                syncPhotoSlots();
+                showToast(`${slot.badge} berhasil diperbarui.`);
+              }
+            };
+            reader.readAsDataURL(file);
+          });
+
+          changeLabel.appendChild(fileInput);
+          actions.appendChild(zoomBtn);
+          actions.appendChild(changeLabel);
+
+          body.appendChild(info);
+          body.appendChild(actions);
+
+          card.appendChild(frame);
+          card.appendChild(body);
+          galleryGrid.appendChild(card);
+        });
+
+        syncPhotoSlots();
+      }
+
+      const batchInput = document.getElementById('batch-gallery-input');
+      if (batchInput) {
+        batchInput.addEventListener('change', (e) => {
+          const files = Array.from(e.target.files || []);
+          if (!files.length) return;
+          const count = Math.min(files.length, gallerySlots.length);
+          let completed = 0;
+
+          for (let i = 0; i < count; i++) {
+            const targetSlot = gallerySlots[i];
+            const reader = new FileReader();
+            reader.onload = () => {
+              if (typeof reader.result === 'string') {
+                customPhotoMap[targetSlot.id] = reader.result;
+              }
+              completed += 1;
+              if (completed === count) {
+                syncPhotoSlots();
+                showToast(`${count} foto berhasil dimuat.`);
+              }
+            };
+            reader.readAsDataURL(files[i]);
+          }
+          batchInput.value = '';
+        });
+      }
+
+      const resetBtn = document.getElementById('reset-gallery-btn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          Object.keys(customPhotoMap).forEach((key) => delete customPhotoMap[key]);
+          syncPhotoSlots();
+          showToast('Bingkai foto dikembalikan ke bawaan.');
+        });
+      }
+
+      buildGalleryCards();
+
+      // -------------------------------------------------------------------
+      // 5. REVEAL ANIMATION SAAT GULIR
+      // -------------------------------------------------------------------
+      const sections = document.querySelectorAll('.reveal-section');
+      if ('IntersectionObserver' in window && sections.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.1 }
+        );
+        sections.forEach((sec) => observer.observe(sec));
+      } else {
+        sections.forEach((sec) => sec.classList.add('is-visible'));
+      }
+    })();
+  </script>
+</body>
+</html>
